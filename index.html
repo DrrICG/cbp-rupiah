@@ -3,9 +3,265 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CBP Rupiah — Edukasi Cinta Bangga Paham Rupiah</title>
+    <title>CBP Rupiah — Media Edukasi Cinta Bangga Paham Rupiah</title>
     <meta name="description" content="Media edukasi tentang CBP Rupiah kepada masyarakat Indonesia.">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Revisi khusus index.html: beranda diganti menjadi pengertian singkat CBP + card modern */
+        .home-hero {
+            min-height: 100vh;
+            position: relative;
+            width: min(100%,1680px);
+            margin: 0 auto;
+            padding: 112px 22px 44px;
+            display: grid;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .home-wrap {
+            position: relative;
+            z-index: 6;
+            width: min(1120px, 100%);
+            margin: 0 auto;
+            display: grid;
+            gap: 26px;
+        }
+
+        .home-panel {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-xl);
+            padding: clamp(26px, 4vw, 48px);
+            background: rgba(255,255,255,.76);
+            border: 1px solid rgba(255,255,255,.82);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+        }
+
+        .home-panel::before {
+            content: "";
+            position: absolute;
+            inset: -80px -100px auto auto;
+            width: 310px;
+            height: 310px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(10,78,163,.20), transparent 66%);
+        }
+
+        .home-panel::after {
+            content: "";
+            position: absolute;
+            left: 26px;
+            right: 26px;
+            bottom: 14px;
+            height: 5px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--red), #fff, var(--blue));
+            box-shadow: 0 0 28px rgba(10,78,163,.22);
+        }
+
+        .home-eyebrow {
+            margin: 0 0 12px;
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            font-size: 12px;
+            font-weight: 1000;
+            color: var(--red);
+        }
+
+        .home-title {
+            margin: 0;
+            line-height: .86;
+            font-size: clamp(82px, 14vw, 214px);
+            font-weight: 1000;
+            letter-spacing: -.09em;
+            background: linear-gradient(90deg, #e32228 0%, #b90e1a 24%, #ffffff 48%, #0a4ea3 70%, #06265d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            -webkit-text-stroke: clamp(1px, .18vw, 3px) rgba(255,255,255,.92);
+            text-shadow: 0 8px 0 rgba(255,255,255,.55), 0 28px 44px rgba(6,38,93,.23);
+            filter: drop-shadow(0 10px 24px rgba(0,0,0,.18));
+        }
+
+        .home-subtitle {
+            max-width: 820px;
+            margin: 18px 0 0;
+            color: var(--muted);
+            font-size: clamp(16px, 1.6vw, 19px);
+            line-height: 1.75;
+            font-weight: 650;
+        }
+
+        .home-subtitle strong {
+            color: var(--blue-dark);
+        }
+
+        .home-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 18px;
+        }
+
+        .home-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 255px;
+            padding: 25px 24px;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(255,255,255,.72);
+            box-shadow: 0 24px 66px rgba(9,25,58,.13);
+            transform-style: preserve-3d;
+            transition: transform .24s ease, box-shadow .24s ease;
+        }
+
+        .home-card:hover {
+            transform: translateY(-8px) rotateX(2deg);
+            box-shadow: 0 34px 88px rgba(9,25,58,.22);
+        }
+
+        .home-card.red {
+            color: #fff;
+            background: linear-gradient(145deg,#f23d45,#a70f19 76%);
+        }
+
+        .home-card.white {
+            color: var(--ink);
+            background: linear-gradient(145deg,#ffffff,#eef6ff);
+        }
+
+        .home-card.blue {
+            color: #fff;
+            background: linear-gradient(145deg,#126ed2,#052a66 82%);
+        }
+
+        .home-card::before {
+            content: "";
+            position: absolute;
+            inset: -70px -80px auto auto;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.22);
+        }
+
+        .home-card .number {
+            display: inline-grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            background: rgba(255,255,255,.20);
+            border: 1px solid rgba(255,255,255,.28);
+            font-weight: 1000;
+        }
+
+        .home-card.white .number {
+            background: rgba(10,78,163,.08);
+            border-color: rgba(10,78,163,.13);
+            color: var(--blue);
+        }
+
+        .home-card h2 {
+            position: relative;
+            z-index: 2;
+            margin: 0 0 12px;
+            font-size: 28px;
+            letter-spacing: -.04em;
+        }
+
+        .home-card p {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.68;
+            font-weight: 620;
+            opacity: .94;
+        }
+
+        .home-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 26px;
+        }
+
+        .home-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            border-radius: 999px;
+            font-weight: 950;
+            box-shadow: 0 15px 34px rgba(9,25,58,.12);
+            transition: .22s ease;
+        }
+
+        .home-action:hover {
+            transform: translateY(-3px);
+        }
+
+        .home-action.primary {
+            color: #fff;
+            background: var(--red);
+        }
+
+        .home-action.secondary {
+            color: var(--blue);
+            background: #e8f1ff;
+        }
+
+        .home-note {
+            width: min(970px, 100%);
+            margin: 0 auto;
+            padding: 20px 24px;
+            border-radius: var(--radius-lg);
+            background: rgba(255,255,255,.72);
+            border: 1px solid rgba(255,255,255,.8);
+            box-shadow: 0 16px 42px rgba(9,25,58,.10);
+            backdrop-filter: blur(14px);
+            color: var(--muted);
+            line-height: 1.7;
+            font-weight: 650;
+            text-align: center;
+        }
+
+        @media (max-width: 920px) {
+            .home-card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .home-title {
+                font-size: 96px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .home-hero {
+                padding: 104px 12px 32px;
+            }
+
+            .home-panel {
+                padding: 24px 20px 34px;
+            }
+
+            .home-title {
+                font-size: 78px;
+            }
+
+            .home-actions {
+                flex-direction: column;
+            }
+
+            .home-action {
+                justify-content: center;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="page-bg" aria-hidden="true"></div>
@@ -14,32 +270,32 @@
     <div class="orb orb-blue" aria-hidden="true"></div>
 
     <header class="topbar" id="topbar">
-    <a class="brand " href="index.html" aria-label="Kembali ke beranda">
-                    <img src="assets/img/logo-bi.png" alt="Logo Bank Indonesia" class="logo-bi" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+        <a class="brand" href="index.html" aria-label="Kembali ke beranda">
+            <img src="assets/img/logo-bi.png" alt="Logo Bank Indonesia" class="logo-bi" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
             <span class="bi-seal logo-fallback" aria-hidden="true">BI</span>
-        
-        <span class="brand-copy">
-            <strong>BANK INDONESIA</strong>
-            <small>Bank Sentral Republik Indonesia</small>
-        </span>
-    </a>
 
-    <nav class="nav" id="mainNav" aria-label="Navigasi utama">
-                    <a class="nav-link active" href="index.html">Beranda</a>
-                    <a class="nav-link " href="cbp.html">CBP Rupiah</a>
-                    <a class="nav-link " href="sejarah-rupiah.html">Sejarah Rupiah</a>
-                    <a class="nav-link " href="qris.html">QRIS</a>
-                    <a class="nav-link " href="kuis.html">Kuis</a>
-                    <a class="nav-link " href="tentang-website.html">Tentang Website</a>
-            </nav>
+            <span class="brand-copy">
+                <strong>BANK INDONESIA</strong>
+                <small>Bank Sentral Republik Indonesia</small>
+            </span>
+        </a>
 
-    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-    </button>
-</header>
+        <nav class="nav" id="mainNav" aria-label="Navigasi utama">
+            <a class="nav-link active" href="index.html">Beranda</a>
+            <a class="nav-link" href="cbp.html">CBP Rupiah</a>
+            <a class="nav-link" href="sejarah-rupiah.html">Sejarah Rupiah</a>
+            <a class="nav-link" href="qris.html">QRIS</a>
+            <a class="nav-link" href="kuis.html">Kuis</a>
+            <a class="nav-link" href="tentang-website.html">Tentang Website</a>
+        </nav>
+
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
 
     <main>
-        <section class="hero" id="beranda">
+        <section class="home-hero" id="beranda">
             <div class="skyline" aria-hidden="true">
                 <span class="monas"></span>
                 <span class="building b1"></span>
@@ -50,100 +306,62 @@
             <div class="flag-ribbon ribbon-left" aria-hidden="true"></div>
             <div class="flag-ribbon ribbon-right" aria-hidden="true"></div>
 
-            <div class="hero-title reveal">
-                <p class="eyebrow">Edukasi Publik Rupiah</p>
-                <h1>CBP</h1>
-                <p class="cbp-line"><span>Cinta</span><i>•</i><span>Bangga</span><i>•</i><span>Paham Rupiah</span></p>
-                <p class="hero-subtitle">Pilih salah satu landing page untuk memahami CBP Rupiah, Sejarah Rupiah, QRIS, atau mengikuti Kuis CBP.</p>
-            </div>
+            <div class="home-wrap">
+                <div class="home-panel reveal">
+                    <p class="home-eyebrow">Media Edukasi Rupiah untuk Indonesia</p>
+                    <h1 class="home-title">CBP</h1>
+                    <p class="home-subtitle">
+                        <strong>Cinta Bangga Paham Rupiah</strong> adalah gerakan edukasi untuk meningkatkan kesadaran masyarakat Indonesia terhadap Rupiah. Melalui CBP, masyarakat diajak untuk mengenali dan merawat Rupiah, bangga menggunakan Rupiah sebagai simbol kedaulatan negara, serta memahami peran Rupiah dalam kehidupan ekonomi sehari-hari.
+                    </p>
 
-            <aside class="bubble-area bubble-left" aria-label="Isu CBP di sebelah kiri">
-                                    <article class="bubble red reveal delay-1">
-                        <span class="bubble-icon">•••</span>
-                        <p>Uang masih sering dilipat, dicoret, atau diremas di dompet.</p>
-                    </article>
-                                    <article class="bubble red reveal delay-2">
-                        <span class="bubble-icon">•••</span>
-                        <p>Banyak orang memakai Rupiah setiap hari, tetapi belum mengenal sejarahnya.</p>
-                    </article>
-                            </aside>
+                    <div class="home-actions">
+                        <a class="home-action primary" href="cbp.html">Pelajari CBP Rupiah <span>→</span></a>
+                        <a class="home-action secondary" href="sejarah-rupiah.html">Sejarah Rupiah <span>→</span></a>
+                        <a class="home-action secondary" href="qris.html">Tentang QRIS <span>→</span></a>
+                        <a class="home-action secondary" href="kuis.html">Mulai Kuis <span>→</span></a>
+                    </div>
+                </div>
 
-            <aside class="bubble-area bubble-right" aria-label="Isu CBP di sebelah kanan">
-                                    <article class="bubble blue reveal delay-1">
-                        <span class="bubble-icon">•••</span>
-                        <p>Saat membayar QRIS, masih ada yang lupa mengecek nama merchant dan nominal.</p>
+                <div class="home-card-grid">
+                    <article class="home-card red reveal delay-1">
+                        <span class="number">01</span>
+                        <h2>Cinta Rupiah</h2>
+                        <p>
+                            Cinta Rupiah berarti mengenali ciri keaslian uang, merawat uang dengan baik, serta tidak merusak uang. Sikap ini dapat diterapkan melalui kebiasaan sederhana seperti menjaga uang tetap bersih, tidak dilipat berlebihan, tidak dicoret, tidak distapler, tidak diremas, dan tidak dibasahi.
+                        </p>
                     </article>
-                                    <article class="bubble blue reveal delay-2">
-                        <span class="bubble-icon">•••</span>
-                        <p>Sebagian masyarakat menerima uang tunai tanpa memeriksa 3D: Dilihat, Diraba, Diterawang.</p>
+
+                    <article class="home-card white reveal delay-2">
+                        <span class="number">02</span>
+                        <h2>Bangga Rupiah</h2>
+                        <p>
+                            Bangga Rupiah berarti menggunakan Rupiah dengan rasa hormat karena Rupiah adalah alat pembayaran yang sah di Indonesia sekaligus simbol kedaulatan bangsa. Dengan menggunakan Rupiah, masyarakat ikut menjaga identitas dan kehormatan negara.
+                        </p>
                     </article>
-                            </aside>
 
-            <div class="layout-stage" aria-label="Tiga pilihan landing page utama">
-                                    <article class="layout-card red reveal delay-1" data-tilt>
-                        <span class="card-index">01</span>
-                        <div class="letter-wrap">
-                            <span class="big-letter">S</span>
-                            <span class="badge">Sejarah</span>
-                        </div>
-
-                                                    <div class="visual timeline-visual" aria-hidden="true">
-                                <span></span><span></span><span></span>
-                            </div>
-                        
-                        <h2>Sejarah Rupiah</h2>
-                        <h3>Jejak kedaulatan ekonomi bangsa</h3>
-                        <p>Pelajari perjalanan Rupiah dari simbol perjuangan ekonomi hingga menjadi identitas transaksi masyarakat Indonesia.</p>
-                        <a class="card-button" href="sejarah-rupiah.html">Masuk Landing Page <span>→</span></a>
+                    <article class="home-card blue reveal delay-3">
+                        <span class="number">03</span>
+                        <h2>Paham Rupiah</h2>
+                        <p>
+                            Paham Rupiah berarti memahami fungsi Rupiah sebagai alat tukar, alat penyimpan nilai, dan bagian penting dari perekonomian. Pemahaman ini mendorong masyarakat untuk bertransaksi secara bijak, menabung, dan menggunakan uang sesuai kebutuhan.
+                        </p>
                     </article>
-                                    <article class="layout-card white reveal delay-2" data-tilt>
-                        <span class="card-index">02</span>
-                        <div class="letter-wrap">
-                            <span class="big-letter">Q</span>
-                            <span class="badge">Digital</span>
-                        </div>
+                </div>
 
-                                                    <div class="visual qris-visual" aria-hidden="true">
-                                <span></span><span></span><span></span><span></span><i></i><i></i><i></i><i></i>
-                            </div>
-                        
-                        <h2>Tentang QRIS</h2>
-                        <h3>Satu standar pembayaran QR</h3>
-                        <p>Kenali QRIS sebagai standar kode QR pembayaran nasional yang membuat transaksi lebih cepat, mudah, aman, dan praktis.</p>
-                        <a class="card-button" href="qris.html">Masuk Landing Page <span>→</span></a>
-                    </article>
-                                    <article class="layout-card blue reveal delay-3" data-tilt>
-                        <span class="card-index">03</span>
-                        <div class="letter-wrap">
-                            <span class="big-letter">K</span>
-                            <span class="badge">Interaktif</span>
-                        </div>
-
-                                                    <div class="visual quiz-visual" aria-hidden="true">?</div>
-                        
-                        <h2>Kuis CBP</h2>
-                        <h3>Uji pemahaman Rupiah</h3>
-                        <p>Jawab pertanyaan singkat tentang sejarah Rupiah, QRIS, 3D, dan 5J untuk mengetahui skor pemahamanmu.</p>
-                        <a class="card-button" href="kuis.html">Masuk Landing Page <span>→</span></a>
-                    </article>
-                            </div>
-
-            <div class="bottom-strip reveal delay-4" aria-label="Ringkasan edukasi CBP">
-                <div><strong>5J</strong><span>Rawat uang Rupiah</span></div>
-                <div><strong>3D</strong><span>Cek keaslian uang</span></div>
-                <div><strong>QRIS</strong><span>Bayar digital cermat</span></div>
-                <a class="strip-link" href="cbp.html"><strong>CBP</strong><span>Cinta Bangga Paham</span></a>
+                <p class="home-note reveal delay-4">
+                    Media edukasi tentang CBP Rupiah kepada masyarakat Indonesia.
+                </p>
             </div>
         </section>
     </main>
 
     <footer class="footer footer-minimal">
-    <div class="footer-mini-inner">
-        <p><strong>CBP Rupiah</strong> — Media edukasi tentang CBP Rupiah kepada masyarakat Indonesia.</p>
-        <a href="tentang-website.html">Tentang Website</a>
-    </div>
-    <p class="copyright">© 2026 Media Edukasi CBP Rupiah.</p>
-</footer>
+        <div class="footer-mini-inner">
+            <p><strong>CBP Rupiah</strong> — Media edukasi tentang CBP Rupiah kepada masyarakat Indonesia.</p>
+            <a href="tentang-website.html">Tentang Website</a>
+        </div>
+        <p class="copyright">© 2026 Media Edukasi CBP Rupiah.</p>
+    </footer>
 
     <button class="to-top" id="toTop" type="button" aria-label="Kembali ke atas">↑</button>
     <script src="assets/js/app.js"></script>
