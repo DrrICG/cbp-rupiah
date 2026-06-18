@@ -309,3 +309,21 @@ button{font:inherit}
     .brand-copy small{font-size:8px;}
     .hero-title h1{-webkit-text-stroke:1px rgba(255,255,255,.9) !important;}
 }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+.hero {
+  padding-top: 40px;
+}
+.viewer-panel {
+  min-height: 80vh;
+}
